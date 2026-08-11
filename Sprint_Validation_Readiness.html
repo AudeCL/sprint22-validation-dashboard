@@ -759,7 +759,7 @@
             </div>
         </div>
         <div class="data-refresh-notice">
-            <strong>ℹ️ Data Refresh:</strong> ADO data last extracted on <strong>August 10, 2026 at 9:53 AM CEST</strong>.
+            <strong>ℹ️ Data Refresh:</strong> ADO data last extracted on <strong>August 11, 2026 at 9:54 AM CEST</strong>.
             Validations completed in ADO after this time may not be reflected yet. Dashboard will be refreshed periodically.
         </div>
     </div>
@@ -960,6 +960,7 @@
             {id:"1437317",title:"[OM] FEX permissions - Role-Based Access Control for Order Management (Servicing Actions)",assignee:"",state:"Design Review",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:2,parent:"970211"},
             {id:"1436999",title:"[OM] Order Traceability for Ship-To Initiated Orders",assignee:"",state:"Design Review",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:2,parent:"1403752"},
             {id:"1457567",title:"[OM][Enabler] Order Create / Order Update - Recover Failed Orders Following Empty Order Creation",assignee:"Aude",state:"In Design",tags:["BestEffort","Enabler","Hypercare","NoQA","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:5,parent:"970209"},
+            {id:"1504393",title:"[OM] OrderPad Header - Highlight Financial Tiles for Ship-To Order Initiation",assignee:"Aude",state:"In Design",tags:["BestEffort","Order Mgmt"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:0,parent:"970114"},
             {id:"1491839",title:"[OM][Change Request] Return Request - Enhance Product Return Eligibility for Partially Delivered Products",assignee:"",state:"Design Review",tags:["ChangeRequest","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"970206"},
             // Edouard Declercq
             {id:"1491971",title:"[eB2B] Order History View",assignee:"Edouard",state:"Design Review",tags:["eB2B","UX"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:13,parent:"1381489"},
@@ -979,8 +980,6 @@
             {id:"1370700",title:"[OM][Change Request] Account Financial Info - 500 API Error - Missing Company Code",assignee:"Cristina",state:"In Design",tags:["ChangeRequest","Order Mgmt","UAT2"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"970114"},
             {id:"1491542",title:"[OM][Change Request] One-Time Shipping Address - Capture Company Name",assignee:"Cristina",state:"In Design",tags:["ChangeRequest","Order Mgmt"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:2,parent:"970183"},
             {id:"1496262",title:"🚧[OM] Order Header - View Open AR Documents from Financial Tiles",assignee:"Cristina",state:"In Design",tags:["BestEffort","eB2B","Order Mgmt"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:0,parent:"970114"},
-            // Noémie Prin
-            {id:"1504393",title:"[OM] OrderPad Header - Highlight Financial Tiles for Ship-To Order Initiation",assignee:"Noémie",state:"In Design",tags:["BestEffort","Order Mgmt"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:0,parent:"970114"},
             // Emilie Hennequin
             {id:"1434742",title:"[OM][Enabler] Order Management System (OMS)",assignee:"Emilie",state:"New",tags:["eB2B","Enabler","NoQA","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:8,parent:"1469336"},
             {id:"1434748",title:"[OM][Enabler] Pricing Model Evolution Readiness - New SAP Pricing Procedures & Discount Types",assignee:"Emilie",state:"New",tags:["eB2B","Enabler","NoQA","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:8,parent:"969175"},
@@ -1392,23 +1391,17 @@
         };
 
         const getNBA = (story) => {
-            // No validation expected at all → nothing to do
-            if (!story.uxExpected && !story.dataExpected && !story.businessExpected && !story.solutionExpected) {
-                return { text: 'None', style: 'color:#bbb;' };
-            }
-            // Solution not yet stable → assignee must act
-            if (story.solutioningStatus === 'Not Started' || story.solutioningStatus === 'Being Worked On' || story.solutioningStatus === 'Being Finalised') {
+            // Not yet finalised → assignee is always the NBA owner (solutioning still in progress)
+            if (story.solutioningStatus !== 'Finalised') {
                 const name = story.assignee || 'Unassigned';
                 return { text: name, style: 'color:#1a1a1a;' };
             }
-            // Finalised → check which validations are still pending
-            const pending = [];
-            if (story.uxExpected && !story.uxStatus.includes('Completed')) pending.push('UX');
-            if (story.dataExpected && !story.dataStatus.includes('Completed')) pending.push('Data');
-            if (story.businessExpected && !story.businessStatus.includes('Completed')) pending.push('Business');
-            if (story.solutionExpected && !story.solutionStatus.includes('Completed')) pending.push('Solution');
-            if (pending.length === 0) {
-                return { text: 'None', style: 'color:#bbb;' };
+            // Finalised: no validation expected at all, or all validations done → nothing pending
+            if (!story.uxExpected && !story.dataExpected && !story.businessExpected && !story.solutionExpected) {
+                return { text: 'N/A', style: 'color:#bbb;' };
+            }
+            if (story.readiness === 'Ready') {
+                return { text: 'N/A', style: 'color:#bbb;' };
             }
             return { text: 'Validator(s)', style: 'color:#1a1a1a;' };
         };
