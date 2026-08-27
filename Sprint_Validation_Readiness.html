@@ -759,7 +759,7 @@
             </div>
         </div>
         <div class="data-refresh-notice">
-            <strong>ℹ️ Data Refresh:</strong> ADO data last extracted on <strong>August 26, 2026 at 8:37 AM CEST</strong>.
+            <strong>ℹ️ Data Refresh:</strong> ADO data last extracted on <strong>August 27, 2026 at 5:45 PM CEST</strong>.
             Validations completed in ADO after this time may not be reflected yet. Dashboard will be refreshed periodically.
         </div>
     </div>
@@ -950,12 +950,12 @@
         // t/u/d/b = Technical/UX/Data/Business validation flags (1 = completed in ADO)
         const rawItems = [
             {id:"1420594",title:"[eB2B] [Tech] Qualtrics Integration (via GTM)",assignee:"Antoine",state:"New",tags:["Blocked","eB2B","NoQA","NoValidation"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:2,parent:"1381364"},
-            {id:"1491971",title:"[eB2B] Order History View",assignee:"Antoine",state:"Design Review",tags:["eB2B","UX"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:13,parent:"1381489"},
             {id:"1495366",title:"[eB2B] [Tech] Document Retrieval",assignee:"Antoine",state:"In Design",tags:["eB2B","NoQA","NoValidation"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"1381489"},
             {id:"1511803",title:"[OM][Tech] Billing Document Payment Status & Refresh Strategy",assignee:"Harry",state:"Design Review",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:8,parent:"970114"},
             {id:"1391468",title:"[OM][Tech] Return - External Return Order Creation / Update 🚩",assignee:"Harry",state:"Design Review",tags:["NoQA","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"970206"},
             {id:"1403714",title:"[OM]Order Summary - Trigger On-Demand SAP Synchronization",assignee:"Aude",state:"In Design",tags:["BestEffort","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:8,parent:"970209"},
             {id:"1369357",title:"[OM][Tech] returnOrderPost & returnOrderInfo – Return Order Data Model for Reference Document Traceability 🚩",assignee:"Aude",state:"Design Review",tags:["Order Mgmt"],ux_ui:0,data_rel:1,t:0,u:0,d:0,b:0,sp:2,parent:"970206"},
+            {id:"1516119",title:"[eB2B] Return History View",assignee:"Aude",state:"Design Review",tags:["eB2B","UX"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:13,parent:"1381476"},
             {id:"1457567",title:"[OM][Enabler] Order Create / Order Update - Recover Failed Orders Following Empty Order Creation",assignee:"Aude",state:"In Design",tags:["BestEffort","Enabler","Hypercare","NoQA","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:5,parent:"970209"},
             {id:"1467272",title:"[eB2B] Cross-Account Data Bridging",assignee:"Edouard",state:"Design Review",tags:["Data","eB2B"],ux_ui:0,data_rel:1,t:0,u:0,d:0,b:0,sp:8,parent:"1381397"},
             {id:"1370700",title:"[OM][Change Request] Account Financial Info - 500 API Error - Missing Company Code",assignee:"Cristina",state:"In Design",tags:["ChangeRequest","Order Mgmt","UAT2"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"970114"},
@@ -964,25 +964,24 @@
             {id:"1496262",title:"🚧[OM] Order Header - View Open AR Documents from Financial Tiles",assignee:"Cristina",state:"In Design",tags:["BestEffort","eB2B","Order Mgmt"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:0,parent:"970114"},
             {id:"1434742",title:"[OM][Enabler] Order Management System (OMS)",assignee:"Emilie",state:"New",tags:["eB2B","Enabler","NoQA","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:8,parent:"1469336"},
             {id:"1434748",title:"[OM][Enabler] Pricing Model Evolution Readiness - New SAP Pricing Procedures & Discount Types",assignee:"Emilie",state:"New",tags:["eB2B","Enabler","NoQA","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:8,parent:"969175"},
-            {id:"1437239",title:"[OM] Order & Return Visibility Across Account Hierarchy (Sold-To / Ship-To)",assignee:"Eline",state:"In Design",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"970209"},
+            {id:"1437239",title:"[OM] Order & Return Visibility Across Account Hierarchy (Sold-To / Ship-To / Bill-To / Payer)",assignee:"Eline",state:"In Design",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"970209"},
             {id:"1439126",title:"[OM] AI-powered Order Management - Reorder through Agent conversation",assignee:"Eline",state:"New",tags:["BestEffort","eB2B","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:8,parent:"970196"},
             {id:"1439128",title:"[OM] AI-powered Order Management - Reorder Gap Detection",assignee:"Eline",state:"New",tags:["BestEffort","eB2B","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:13,parent:"970196"},
             {id:"1439130",title:"[OM] AI-powered Order Management - Return order through Agent conversation",assignee:"Eline",state:"Qualified",tags:["eB2B","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:8,parent:"970206"},
-            {id:"1491839",title:"[OM][Change Request] Return Request - Enhance Product Return Eligibility for Partially Delivered Products",assignee:"Eline",state:"Design Review",tags:["ChangeRequest","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"970206"},
             {id:"1489700",title:"[OM][Change Request] Return Request - Add New Return Reasons (Z03, Z04, Z05, Z06, Z07)",assignee:"Eline",state:"In Design",tags:["ChangeRequest","Order Mgmt"],ux_ui:1,data_rel:1,t:0,u:0,d:0,b:0,sp:3,parent:"970206"},
-            {id:"1495771",title:"[eB2B] Order Details Page - Global Actions",assignee:"Justine",state:"New",tags:["eB2B","UX"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:13,parent:"1381489"},
             {id:"1495775",title:"[eB2B] Matching logic between portal user updates & contact infos",assignee:"Justine",state:"New",tags:["eB2B"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:5,parent:"1381392"},
-            {id:"1471146",title:"[eB2B] Order Details Page",assignee:"Justine",state:"In Design",tags:["eB2B","UX"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:13,parent:"1381489"},
-            {id:"1482596",title:"[eB2B] Sales Channel & Origin Consolidation",assignee:"Justine",state:"New",tags:["eB2B"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:1,parent:"1381489"},
             {id:"1434728",title:"[OM][Enabler] Enable new Customer Account Group - “CDP” (one per country)",assignee:"Johannes",state:"New",tags:["BestEffort","eB2B","Enabler","NoQA","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:5,parent:"970082"},
-            {id:"1436999",title:"[OM] Order Traceability for Ship-To Initiated Orders",assignee:"",state:"Design Review",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:2,parent:"1403752"},
+            {id:"1436999",title:"[OM] Order Traceability for Ship-To Initiated Orders",assignee:"",state:"Design Review",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:0,sp:2,parent:"1403752"},
             {id:"1380999",title:"[OM][Change Request][TECH] salesOrderPATCH - Validate Support for External Order Cancellation 🚩",assignee:"",state:"Ready for UAT",tags:["ChangeRequest","NoQA","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:1,parent:"970201"},
-            {id:"1482600",title:"[eB2B] Standardized Status Naming",assignee:"",state:"Ready to build",tags:["eB2B"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:1,parent:"1381489"},
             {id:"1437317",title:"[OM] FEX permissions - Role-Based Access Control for Order Management (Servicing Actions)",assignee:"",state:"Design Review",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:2,parent:"970211"},
+            {id:"1471146",title:"[eB2B] Order Details Page",assignee:"",state:"Design Review",tags:["eB2B","UX"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:13,parent:"1381489"},
+            {id:"1482596",title:"[eB2B] Sales Channel & Origin Consolidation",assignee:"",state:"Design Review",tags:["eB2B"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:1,parent:"1381489"},
+            {id:"1482600",title:"[eB2B] Standardized Status Naming",assignee:"",state:"Ready to build",tags:["eB2B"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:1,parent:"1381489"},
             {id:"1504393",title:"[OM] OrderPad Header - Highlight Financial Tiles for Ship-To Order Initiation",assignee:"",state:"Ready to build",tags:["BestEffort","Order Mgmt"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:0,parent:"970114"},
-            {id:"1516119",title:"[eB2B] Return History View",assignee:"",state:"Design Review",tags:["eB2B","UX"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:13,parent:"1381476"},
             {id:"1490303",title:"[OM] Translate Sandbox - Import the Initial OM PL Translation Package into the Translation Sandbox",assignee:"",state:"Design Review",tags:["NoQA","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"970209"},
             {id:"1491542",title:"[OM][Change Request] One-Time Shipping Address - Capture Company Name",assignee:"",state:"Design Review",tags:["ChangeRequest","Order Mgmt"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:2,parent:"970183"},
+            {id:"1491839",title:"[OM][Change Request] Return Request - Enhance Product Return Eligibility for Partially Delivered Products",assignee:"",state:"Design Review",tags:["ChangeRequest","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"970206"},
+            {id:"1491971",title:"[eB2B] Order History View",assignee:"",state:"Design Review",tags:["eB2B","UX"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:13,parent:"1381489"},
             {id:"1491973",title:"[eB2B] Billing Documents List",assignee:"",state:"Ready to build",tags:["eB2B","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:5,parent:"1381489"},
             {id:"1495360",title:"[eB2B] Recent Orders Widget",assignee:"",state:"Ready to build",tags:["eB2B","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:5,parent:"1381411"},
             {id:"1495362",title:"[eB2B] Return Order Submission UI",assignee:"",state:"Design Review",tags:["Blocked","eB2B","UX"],ux_ui:1,data_rel:0,t:0,u:0,d:0,b:0,sp:13,parent:"1381476"},
