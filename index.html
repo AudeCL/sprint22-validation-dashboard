@@ -857,34 +857,7 @@
 
     <div id="change-requests" class="tab-content">
         <div class="section">
-            <div class="section-header">
-                <h2 style="margin-bottom:0; padding-bottom:0; border-bottom:none;">🔁 Change Requests</h2>
-                <button class="legend-toggle" id="cr-legend-toggle" onclick="toggleCRLegend()" aria-expanded="false">📖 Legend <span class="legend-caret">▸</span></button>
-            </div>
-            <div class="legend-panel" id="cr-legend-panel">
-                <h4>How to read this table</h4>
-                <p>The <strong>Solutioning Status</strong> indicates the maturity of each Change Request and whether it is ready for stakeholder review. It is automatically derived from the ADO <em>State</em> and <em>Assigned To</em> fields.</p>
-                <div class="legend-item-row">
-                    <span class="legend-status">⚪ Not Started</span>
-                    <span class="legend-desc">The User Story has not yet been picked up by the Salesforce team. No validation can be requested at this stage.<br><em style="color:#6c757d;">🔍 In ADO: State = <strong>New</strong>, any assignee.</em></span>
-                </div>
-                <div class="legend-item-row">
-                    <span class="legend-status">🟠 In Progress</span>
-                    <span class="legend-desc">The Salesforce team is actively designing the User Story. If validation is required, the item is not yet ready for review.<br><em style="color:#6c757d;">🔍 In ADO: State = <strong>In Design</strong>, any assignee.</em></span>
-                </div>
-                <div class="legend-item-row">
-                    <span class="legend-status">🟡 Under Finalisation</span>
-                    <span class="legend-desc">The Salesforce team is finalising the User Story in design review. Reviewers may already start providing feedback.<br><em style="color:#6c757d;">🔍 In ADO: State = <strong>Design Review</strong> and assigned to a Salesforce team member.</em></span>
-                </div>
-                <div class="legend-item-row">
-                    <span class="legend-status">🟢 Finalised</span>
-                    <span class="legend-desc">The Salesforce team has completed the User Story. It is ready for stakeholder review and approval.<br><em style="color:#6c757d;">🔍 In ADO: State = <strong>Design Review</strong> unassigned or non-SF — or any state beyond Design Review, regardless of assignee.</em></span>
-                </div>
-                <div class="legend-item-row">
-                    <span class="legend-status"><span class="tag-best-effort">💎 Best Effort</span></span>
-                    <span class="legend-desc">This item is <strong>not part of the committed sprint scope</strong>. It will be delivered based on team bandwidth — if capacity allows, it will be completed within the sprint; otherwise it will roll over.</span>
-                </div>
-            </div>
+            <h2>🔁 Change Requests</h2>
             <p style="color: var(--rc-gray); margin-bottom: 10px;">Items flagged as Change Requests, managed as part of this sprint. Change Requests are tracked separately and excluded from the Validation Status Heatmap.</p>
             <div style="overflow-x: auto;">
                 <table id="change-requests-table"></table>
@@ -945,9 +918,10 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // Single source of truth: OM&eB2B - Release 5 - Sprint 22.csv
-        // Each row carries state, assignee, tags, validation flags, story points & parent.
-        // t/u/d/b = Technical/UX/Data/Business validation flags (1 = completed in ADO)
+        // Single source of truth: OM&eB2B - Release 5 - Sprint 21.csv
+        // Each row carries state, assignee, tags, ux_ui/data_rel eligibility flags,
+        // validation flags (t/u/d/b = Technical/UX/Data/Business, 1 = completed in ADO),
+        // story points & parent.
         const rawItems = [
             {id:"1420594",title:"[eB2B] [Tech] Qualtrics Integration (via GTM)",assignee:"Antoine",state:"New",tags:["Blocked","eB2B","NoQA","NoValidation"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:2,parent:"1381364"},
             {id:"1495366",title:"[eB2B] [Tech] Document Retrieval",assignee:"Antoine",state:"In Design",tags:["eB2B","NoQA","NoValidation"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"1381489"},
@@ -1055,7 +1029,7 @@
         let processedStories = [];
         let allStoriesForFiltering = [];
 
-        // Assignees whose ownership indicates solutioning is being finalised
+        // Salesforce team members — used to distinguish "Being Finalised" vs "Finalised" in Design Review
         const solutioningOwners = ["Edouard", "Harry", "Antoine", "Eline", "Cristina", "Justine", "Julie", "Noémie", "Noemie", "Aude", "Diane", "Riad", "Lhoucine", "Mohammed-Mahmoud", "Emilie", "Johannes"];
 
         sprintScope.forEach(story => {
@@ -1066,7 +1040,7 @@
             //  - State New                                        -> Not Started
             //  - State In Design                                  -> Being Worked On
             //  - State Design Review + SF team assignee           -> Being Finalised
-            //  - State Design Review (unassigned / non-SF) or beyond -> Finalised
+            //  - State Design Review (unassigned / non-SF) or any state beyond -> Finalised
             let solutioningStatus;
             if (meta.state === "New") {
                 solutioningStatus = "Not Started";
@@ -1137,12 +1111,12 @@
             allStoriesForFiltering.push(processedStory);
         });
 
-        // Map internal solutioning status to display label + emoji + color
+        // Map internal solutioning status to display label + criticality emoji
         const solutioningDisplay = (s) => {
             if (s === "Finalised") return { label: "Finalised", emoji: "🟢", color: "#28a745" };
             if (s === "Being Finalised") return { label: "Under Finalisation", emoji: "🟡", color: "#ffc107" };
-            if (s === "Not Started") return { label: "Not Started", emoji: "⚪", color: "#6c757d" };
-            return { label: "In Progress", emoji: "🟠", color: "#fd7e14" };
+            if (s === "Being Worked On") return { label: "In Progress", emoji: '🟠', color: "#fd7e14" };
+            return { label: "Not Started", emoji: "⚪", color: "#6c757d" };
         };
 
         // Current workstream view: 'ALL' (OM + eB2B), 'OM', or 'eB2B'
@@ -1382,17 +1356,23 @@
         };
 
         const getNBA = (story) => {
-            // Not yet finalised → assignee is always the NBA owner (solutioning still in progress)
+            // Not yet Finalised → assignee is always the NBA, regardless of validation flags
             if (story.solutioningStatus !== 'Finalised') {
                 const name = story.assignee || 'Unassigned';
                 return { text: name, style: 'color:#1a1a1a;' };
             }
-            // Finalised: no validation expected at all, or all validations done → nothing pending
+            // Finalised: no validation expected at all → nothing to do
             if (!story.uxExpected && !story.dataExpected && !story.businessExpected && !story.solutionExpected) {
-                return { text: 'N/A', style: 'color:#bbb;' };
+                return { text: 'None', style: 'color:#bbb;' };
             }
-            if (story.readiness === 'Ready') {
-                return { text: 'N/A', style: 'color:#bbb;' };
+            // Finalised → validators are the NBA; check if anything is still pending
+            const pending = [];
+            if (story.uxExpected && !story.uxStatus.includes('Completed')) pending.push('UX');
+            if (story.dataExpected && !story.dataStatus.includes('Completed')) pending.push('Data');
+            if (story.businessExpected && !story.businessStatus.includes('Completed')) pending.push('Business');
+            if (story.solutionExpected && !story.solutionStatus.includes('Completed')) pending.push('Solution');
+            if (pending.length === 0) {
+                return { text: 'None', style: 'color:#bbb;' };
             }
             return { text: 'Validator(s)', style: 'color:#1a1a1a;' };
         };
@@ -1528,7 +1508,7 @@
                 crHTML += '<td class="' + getStatusClass(story.dataStatus) + '">' + story.dataStatus + '</td>';
                 crHTML += '<td class="' + getStatusClass(story.businessStatus) + '">' + story.businessStatus + '</td>';
                 crHTML += '<td class="' + getStatusClass(story.solutionStatus) + '">' + story.solutionStatus + '</td>';
-                crHTML += '<td><span class="readiness-' + (story.readiness === 'Ready' ? 'ready' : 'not-ready') + '">' + (story.readiness === 'Ready' ? '🎉 Ready' : 'Not Ready') + '</span></td>';
+                crHTML += '<td><span class="readiness-' + (story.readiness === 'Ready' ? 'ready' : 'not-ready') + '">' + (story.readiness === 'Ready' ? 'Ready' : 'Not Ready') + '</span></td>';
                 crHTML += '</tr>';
             });
         }
@@ -1547,6 +1527,20 @@
         const parentMissing = parentScope.filter(s => !s.parent);
         const parentPct = parentScope.length > 0 ? ((parentMissing.length / parentScope.length) * 100).toFixed(1) : "0.0";
 
+        // Items marked "Ready" overall but still in an early Work Item Step (New,
+        // Qualified, In Design, Design Review) — surfaces stories whose readiness
+        // is out of step with their ADO State. Items that are "Ready" only because
+        // no validation was ever required are excluded: at least one validation
+        // must have been expected (and therefore completed) to count as a genuine
+        // contradiction.
+        const earlySteps = ["New", "Qualified", "In Design", "Design Review"];
+        const readyScope = viewStories;
+        const readyEarlyStep = readyScope.filter(s =>
+            s.readiness === "Ready" &&
+            earlySteps.includes(s.state) &&
+            (s.uxExpected || s.dataExpected || s.businessExpected || s.solutionExpected));
+        const readyEarlyPct = readyScope.length > 0 ? ((readyEarlyStep.length / readyScope.length) * 100).toFixed(1) : "0.0";
+
         const healthClass = (pct) => { const p = parseFloat(pct); return p === 0 ? 'excellent' : p <= 20 ? 'warning' : 'danger'; };
 
         let healthHTML = '';
@@ -1562,12 +1556,19 @@
         healthHTML += '<div class="kpi-subtitle">' + parentMissing.length + ' of ' + parentScope.length + ' items &nbsp;·&nbsp; <span class="drill-hint">click to view ▸</span></div>';
         healthHTML += '</div>';
 
+        healthHTML += '<div class="kpi-card health-tile ' + healthClass(readyEarlyPct) + '" id="health-tile-readyearly" onclick="toggleHealthDrill(\'readyearly\')">';
+        healthHTML += '<div class="kpi-label">Ready but in an Early Step</div>';
+        healthHTML += '<div class="kpi-value">' + readyEarlyStep.length + '</div>';
+        healthHTML += '<div class="kpi-subtitle">' + readyEarlyStep.length + ' of ' + readyScope.length + ' items in New / Qualified / In Design / Design Review &nbsp;·&nbsp; <span class="drill-hint">click to view ▸</span></div>';
+        healthHTML += '</div>';
+
         document.getElementById('health-kpi-grid').innerHTML = healthHTML;
 
         // Stash the matching item sets for the drill-down
         healthDrillData = {
             sp: { title: 'Items without Story Points', items: spMissing },
-            parent: { title: 'Items without a Parent', items: parentMissing }
+            parent: { title: 'Items without a Parent', items: parentMissing },
+            readyearly: { title: 'Ready but in an Early Work Item Step', items: readyEarlyStep, showState: true }
         };
         // Re-render an open drill-down so it stays in sync with the current view
         if (activeHealthDrill) renderHealthDrill(activeHealthDrill);
@@ -1585,14 +1586,17 @@
             const container = document.getElementById('health-drilldown');
             document.getElementById('health-tile-sp').classList.toggle('selected', key === 'sp');
             document.getElementById('health-tile-parent').classList.toggle('selected', key === 'parent');
+            document.getElementById('health-tile-readyearly').classList.toggle('selected', key === 'readyearly');
 
+            const showState = !!data.showState;
+            const colCount = showState ? 4 : 3;
             let html = '<div class="health-drill">';
             html += '<h3>' + data.title + ' <span style="color:var(--rc-muted); font-weight:400;">(' + data.items.length + ')</span></h3>';
             html += '<div style="overflow-x:auto;"><table><thead><tr>';
-            html += '<th>Story ID</th><th>Title</th><th>Solutioning Status</th>';
+            html += '<th>Story ID</th><th>Title</th>' + (showState ? '<th>Work Item Step</th>' : '') + '<th>Solutioning Status</th>';
             html += '</tr></thead><tbody>';
             if (data.items.length === 0) {
-                html += '<tr><td colspan="3" style="text-align:center; color:#999;">No items — this check passes for the current view. 🎉</td></tr>';
+                html += '<tr><td colspan="' + colCount + '" style="text-align:center; color:#999;">No items — this check passes for the current view. 🎉</td></tr>';
             } else {
                 data.items.forEach(s => {
                     const adoUrl = 'https://dev.azure.com/MarsDevTeam/EOS/_workitems/edit/' + s.id;
@@ -1600,7 +1604,8 @@
                     html += '<tr>';
                     html += '<td class="story-id"><a href="' + adoUrl + '" target="_blank">' + s.id + '</a></td>';
                     html += '<td class="story-title">' + s.title + '</td>';
-                    html += '<td><span style="display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;background:' + sol.color + '18;border:1px solid ' + sol.color + '55;font-size:0.8em;white-space:nowrap;">' + sol.emoji + ' <span style="color:' + sol.color + ';font-weight:600;">' + sol.label + '</span></span></td>';
+                    if (showState) html += '<td style="color:#1a1a1a;">' + (s.state || '-') + '</td>';
+                    html += '<td style="color:#1a1a1a;">' + sol.emoji + ' ' + sol.label + '</td>';
                     html += '</tr>';
                 });
             }
@@ -1614,6 +1619,7 @@
                 document.getElementById('health-drilldown').innerHTML = '';
                 document.getElementById('health-tile-sp').classList.remove('selected');
                 document.getElementById('health-tile-parent').classList.remove('selected');
+                document.getElementById('health-tile-readyearly').classList.remove('selected');
             } else {
                 activeHealthDrill = key;
                 renderHealthDrill(key);
@@ -1669,13 +1675,6 @@
         function toggleLegend() {
             const panel = document.getElementById('legend-panel');
             const toggle = document.getElementById('legend-toggle');
-            const expanded = panel.classList.toggle('expanded');
-            toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-        }
-
-        function toggleCRLegend() {
-            const panel = document.getElementById('cr-legend-panel');
-            const toggle = document.getElementById('cr-legend-toggle');
             const expanded = panel.classList.toggle('expanded');
             toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
         }
@@ -1763,9 +1762,10 @@
             // Rank by the text label, ignoring the leading emoji.
             const solRankOf = (text) => {
                 const t = text.toLowerCase();
-                if (t.includes('in progress')) return 0;
-                if (t.includes('under finalisation')) return 1;
-                if (t.includes('finalised')) return 2;
+                if (t.includes('not started')) return 0;
+                if (t.includes('in progress')) return 1;
+                if (t.includes('under finalisation')) return 2;
+                if (t.includes('finalised')) return 3;
                 return 99;
             };
 
@@ -1804,7 +1804,7 @@
         }
 
         console.log("Dashboard loaded successfully!");
-        console.log("Total stories (all workstreams):", processedStories.length);
+        console.log("Total stories (all workstreams, inc. new items):", processedStories.length);
         console.log("Current view:", currentView);
     </script>
 
