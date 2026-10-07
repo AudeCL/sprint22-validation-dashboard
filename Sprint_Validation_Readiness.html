@@ -759,7 +759,7 @@
             </div>
         </div>
         <div class="data-refresh-notice">
-            <strong>ℹ️ Data Refresh:</strong> ADO data last extracted on <strong>October 6, 2026 at 11:38 PM CEST</strong>.
+            <strong>ℹ️ Data Refresh:</strong> ADO data last extracted on <strong>October 7, 2026 at 6:11 PM CEST</strong>.
             Validations completed in ADO after this time may not be reflected yet. Dashboard will be refreshed periodically.
         </div>
     </div>
@@ -923,43 +923,39 @@
         // validation flags (t/u/d/b = Technical/UX/Data/Business, 1 = completed in ADO),
         // story points & parent.
         const rawItems = [
-            {id:"1495775",title:"[eB2B] Matching logic between portal user updates & contact infos",assignee:"Antoine",state:"Build Done",tags:["eB2B"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:5,parent:"1381392"},
-            {id:"1528982",title:"[eB2B] Order Details Page - Billing documents section",assignee:"Antoine",state:"Build Done",tags:["eB2B","SF_eB2B_Review Order Detail Page","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:1,b:1,sp:3,parent:"1381489"},
             {id:"1565140",title:"[eB2B] User Logout & Session Termination",assignee:"Antoine",state:"Build Done",tags:["eB2B","NoValidation"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:1,parent:"1381392"},
-            {id:"1576856",title:"[eB2B][Tech] Storefront Performance – Analyze performance & Implement Improvements",assignee:"Mathieu",state:"New",tags:["eB2B","NoQA","Order Mgmt"],ux_ui:0,data_rel:1,t:1,u:0,d:0,b:0,sp:2,parent:"1381364"},
+            {id:"1576856",title:"[eB2B][Tech] Storefront Performance – Analyze performance & Implement Improvements",assignee:"Mathieu",state:"In Build",tags:["eB2B","NoQA","Order Mgmt"],ux_ui:0,data_rel:1,t:1,u:0,d:0,b:0,sp:2,parent:"1381364"},
             {id:"1457567",title:"[OM][Enabler] Order Create / Order Update - Recover Failed Orders Following Empty Order Creation",assignee:"Aude",state:"In Design",tags:["BestEffort","Enabler","Hypercare","NoQA","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:5,parent:"970209"},
             {id:"1459643",title:"[OM][Enabler] Define Ship-To-Based Clinical Alliance Assortment Strategy",assignee:"Aude",state:"In Build",tags:["eB2B","Enabler","NoQA","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:8,parent:"970147"},
-            {id:"1491973",title:"[eB2B] Billing Documents List",assignee:"Edouard",state:"Build Done",tags:["eB2B","SF_eB2B_Review Billing Documents list","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:5,parent:"1381489"},
-            {id:"1577272",title:"[eB2B][Tech] Code review - fixes",assignee:"Edouard",state:"Build Done",tags:["eB2B","NoQA","Order Mgmt"],ux_ui:0,data_rel:1,t:1,u:0,d:0,b:0,sp:2,parent:"1381358"},
+            {id:"1495364",title:"[eB2B] Order Confirmation Email",assignee:"Edouard",state:"In Build",tags:["eB2B","UX"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:2,parent:"1381486"},
+            {id:"1577272",title:"[eB2B][Tech] Code review - fixes",assignee:"Edouard",state:"Ready for QA testing",tags:["eB2B","NoQA","Order Mgmt"],ux_ui:0,data_rel:1,t:1,u:0,d:0,b:0,sp:2,parent:"1381358"},
             {id:"1574039",title:"[eB2B][ChangeRequest][Tech] Automatically Create \"Order Contact Relationship Record\" at Order Create",assignee:"Edouard",state:"Ready for QA testing",tags:["ChangeRequest","eB2B","Tech"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"1381474"},
-            {id:"1495364",title:"[eB2B] Order Confirmation Email",assignee:"Julie",state:"Ready for QA testing",tags:["eB2B","UX"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:2,parent:"1381486"},
+            {id:"1576211",title:"[eB2B] Order Details Actions Responsive Dropdown (Mobile View)",assignee:"Riad",state:"Ready to build",tags:["eB2B","SF_eB2B_Review Order Detail Page","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:13,parent:"1381489"},
             {id:"1511803",title:"[OM][Tech] Billing Document Status & Refresh Strategy",assignee:"Najat",state:"Waiting for bug fixing",tags:["Mockup","Order Mgmt"],ux_ui:1,data_rel:1,t:1,u:1,d:1,b:0,sp:8,parent:"970114"},
             {id:"1454728",title:"[OM][Enabler] Define R6 Automated Returns Capabilities",assignee:"Eline",state:"In Design",tags:["eB2B","Enabler","NoQA","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:13,parent:"970206"},
             {id:"1083635",title:"[OM][Enabler] Promotions Display (Static Capture)",assignee:"Eline",state:"In Design",tags:["eB2B","Enabler","NoQA","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:13,parent:"1089831"},
             {id:"1571513",title:"[OM][Change Request] Prevent Resend Order Confirmation and Cancellation Emails to Bounced Contacts",assignee:"Lhoucine",state:"In Build",tags:["ChangeRequest","Order Mgmt"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:3,parent:"970196"},
-            {id:"1528979",title:"[eB2B] Order Details Page - Returns section",assignee:"Salma",state:"Waiting for bug fixing",tags:["eB2B","SF_eB2B_Review Order Detail Page","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:3,parent:"1381489"},
+            {id:"1573418",title:"[OM][Change Request] Prevent Add to Cart for ZREP items priced at 0",assignee:"Lhoucine",state:"Design Completed",tags:["ChangeRequest","Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:0,parent:"970157"},
             {id:"1471146",title:"[eB2B] Order Details Page",assignee:"Salma",state:"Waiting for bug fixing",tags:["eB2B","SF_eB2B_Review Order Detail Page","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:13,parent:"1381489"},
+            {id:"1528979",title:"[eB2B] Order Details Page - Returns section",assignee:"Salma",state:"Waiting for bug fixing",tags:["eB2B","SF_eB2B_Review Order Detail Page","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:3,parent:"1381489"},
+            {id:"1528982",title:"[eB2B] Order Details Page - Billing documents section",assignee:"Salma",state:"Ready for QA testing",tags:["eB2B","SF_eB2B_Review Order Detail Page","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:1,b:1,sp:3,parent:"1381489"},
+            {id:"1495775",title:"[eB2B] Matching logic between portal user updates & contact infos",assignee:"Salma",state:"Ready for QA testing",tags:["eB2B"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:5,parent:"1381392"},
             {id:"1491971",title:"[eB2B] Order History View",assignee:"Salma",state:"Waiting for bug fixing",tags:["eB2B","SF_eB2B_Review Order List","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:13,parent:"1381489"},
+            {id:"1491973",title:"[eB2B] Billing Documents List",assignee:"Salma",state:"Ready for QA testing",tags:["eB2B","SF_eB2B_Review Billing Documents list","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:5,parent:"1381489"},
             {id:"1495360",title:"[eB2B] Recent Orders Widget",assignee:"Salma",state:"Waiting for bug fixing",tags:["eB2B","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:5,parent:"1381411"},
             {id:"1495362",title:"[eB2B] Return Order Submission UI",assignee:"Salma",state:"Ready for QA testing",tags:["eB2B","SF_eB2B_Create Return","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:13,parent:"1381476"},
             {id:"1495363",title:"[eB2B] Returns Management",assignee:"Salma",state:"Ready for QA testing",tags:["eB2B","SF_eB2B_Return Order Detail Page","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:8,parent:"1381476"},
-            {id:"1576211",title:"[eB2B] Order Details Actions Responsive Dropdown (Mobile View)",assignee:"Justine",state:"In Design",tags:["eB2B","SF_eB2B_Review Order Detail Page","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:13,parent:"1381489"},
             {id:"1563021",title:"[eB2B][Tech] GTM Data Layer - Implement Salesforce → GTM Data Layer Mapping for VoC & Analytics 🚩",assignee:"Mohammed-Mahmoud",state:"In Build",tags:["eB2B","NoQA","NoValidation"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:5,parent:"1381364"},
-            {id:"1574080",title:"[eB2B][Tech] Enrich Order Management Configuration with Region & Cluster",assignee:"",state:"Ready for Sprint testing",tags:["eB2B","NoQA","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:2,parent:"970209"},
-            {id:"1574107",title:"[OM][Change Request] Extend Akeneo-Salesforce Integration with Product Pillar Field",assignee:"",state:"Ready to build",tags:["ChangeRequest","Data","Order Mgmt"],ux_ui:0,data_rel:1,t:1,u:0,d:0,b:0,sp:2,parent:"1016086"},
-            {id:"1573418",title:"[OM][Change Request] Prevent Add to Cart for ZREP items priced at 0",assignee:"",state:"Design Completed",tags:["ChangeRequest","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:1,sp:0,parent:"970157"},
-            {id:"1573976",title:"[eB2B][Tech] Persist Originating WebCart Reference on Order Summary",assignee:"",state:"Ready for Sprint testing",tags:["eB2B","NoQA","Order Mgmt"],ux_ui:0,data_rel:1,t:1,u:0,d:0,b:0,sp:2,parent:"1381364"},
-            {id:"1574031",title:"[OM][Change Request][NFR] Optimize Order Summaries Page Layout",assignee:"",state:"Ready for Sprint testing",tags:["ChangeRequest","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:1,parent:"1226942"},
-            {id:"1495365",title:"[eB2B] Filter Invoice Document Types",assignee:"",state:"Ready for Sprint testing",tags:["eB2B"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:1,parent:"1381489"},
-            {id:"1495366",title:"[eB2B] [Tech] Document Retrieval",assignee:"",state:"Ready for Sprint testing",tags:["eB2B","NoQA","NoValidation"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"1381489"},
             {id:"1527471",title:"[OM][Change Request] Return Request - Update Return Reason Labels",assignee:"",state:"Ready for Sprint testing",tags:["ChangeRequest","Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:1,parent:"970206"},
-            {id:"1496262",title:"[OM] Order Header - View Open AR Documents from Financial Tiles",assignee:"",state:"Ready for Sprint testing",tags:["BestEffort","eB2B","Order Mgmt"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:5,parent:"970114"},
-            {id:"1504393",title:"[OM] OrderPad Header - Highlight Financial Tiles for Ship-To Order Initiation",assignee:"",state:"Ready for Sprint testing",tags:["BestEffort","Order Mgmt"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:3,parent:"970114"},
             {id:"1535721",title:"[OM][TECH] Sales Order Info - Introduce GET Interface for On-Demand Synchronization 🚩",assignee:"",state:"Ready for Sprint testing",tags:["BestEffort","NoQA","Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:0,sp:3,parent:"1089814"},
             {id:"1548122",title:"[OM][Change Request] Optimize Localized Product Information display",assignee:"",state:"Ready for Sprint testing",tags:["ChangeRequest","Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:2,parent:"1016086"},
             {id:"1558188",title:"[eB2B] [Tech] Homepage - Billing docs widget - Revise visibility based on Account Context",assignee:"",state:"Ready for Sprint testing",tags:["eB2B","NoValidation"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"1381411"},
             {id:"1559956",title:"[eB2B] [Tech] Remove HMAC validation for Adyen webhook",assignee:"",state:"Ready for Sprint testing",tags:["eB2B","NoValidation"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"1381469"},
             {id:"1561348",title:"[OM][NFR]Translate Sandbox - Activate Polish Language",assignee:"",state:"Ready for Sprint testing",tags:["NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:1,parent:"970209"},
+            {id:"1496262",title:"[OM] Order Header - View Open AR Documents from Financial Tiles",assignee:"",state:"Ready for Sprint testing",tags:["BestEffort","eB2B","Order Mgmt"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:5,parent:"970114"},
+            {id:"1504393",title:"[OM] OrderPad Header - Highlight Financial Tiles for Ship-To Order Initiation",assignee:"",state:"Ready for Sprint testing",tags:["BestEffort","Order Mgmt"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:3,parent:"970114"},
+            {id:"1495365",title:"[eB2B] Filter Invoice Document Types",assignee:"",state:"Ready for Sprint testing",tags:["eB2B"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:1,parent:"1381489"},
+            {id:"1495366",title:"[eB2B] [Tech] Document Retrieval",assignee:"",state:"Ready for Sprint testing",tags:["eB2B","NoQA","NoValidation"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"1381489"},
             {id:"1482596",title:"[eB2B] Sales Channel & Origin Consolidation",assignee:"",state:"Ready for Sprint testing",tags:["eB2B","SF_eB2B_Review Order List"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:1,parent:"1381489"},
             {id:"1482600",title:"[eB2B] Standardized Status Naming",assignee:"",state:"Ready for Sprint testing",tags:["eB2B"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:1,parent:"1381489"},
             {id:"1489700",title:"[OM][Change Request] Return Request - Add New Return Reasons (Z03, Z04, Z05, Z06, Z07)",assignee:"",state:"Ready for Sprint testing",tags:["ChangeRequest","Order Mgmt"],ux_ui:0,data_rel:1,t:1,u:0,d:1,b:1,sp:2,parent:"970206"},
@@ -973,7 +969,11 @@
             {id:"1403714",title:"[OM]Order Summary - Trigger On-Demand SAP salesOrderInfo Synchronization",assignee:"",state:"Ready for Sprint testing",tags:["BestEffort","Order Mgmt"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:5,parent:"1089814"},
             {id:"1436999",title:"[OM] Order Traceability for Ship-To Initiated Orders",assignee:"",state:"Ready for Sprint testing",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:2,parent:"1403752"},
             {id:"1437239",title:"[OM] Order & Return Visibility Across Account Hierarchy (Sold-To / Ship-To / Bill-To / Payer)",assignee:"",state:"Ready for Sprint testing",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:3,parent:"970209"},
-            {id:"1437317",title:"[OM] FEX permissions - Role-Based Access Control for Order Management (Servicing Actions)",assignee:"",state:"Ready for Sprint testing",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:2,parent:"970211"}
+            {id:"1437317",title:"[OM] FEX permissions - Role-Based Access Control for Order Management (Servicing Actions)",assignee:"",state:"Ready for Sprint testing",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:2,parent:"970211"},
+            {id:"1573976",title:"[eB2B][Tech] Persist Originating WebCart Reference on Order Summary",assignee:"",state:"Ready for Sprint testing",tags:["eB2B","NoQA","Order Mgmt"],ux_ui:0,data_rel:1,t:1,u:0,d:0,b:0,sp:2,parent:"1381364"},
+            {id:"1574031",title:"[OM][Change Request][NFR] Optimize Order Summaries Page Layout",assignee:"",state:"Ready for Sprint testing",tags:["ChangeRequest","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:1,parent:"1226942"},
+            {id:"1574080",title:"[eB2B][Tech] Enrich Order Management Configuration with Region & Cluster",assignee:"",state:"Ready for Sprint testing",tags:["eB2B","NoQA","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:2,parent:"970209"},
+            {id:"1574107",title:"[OM][Change Request] Extend Akeneo-Salesforce Integration with Product Pillar Field",assignee:"",state:"Ready to build",tags:["ChangeRequest","Data","Order Mgmt"],ux_ui:0,data_rel:1,t:1,u:0,d:0,b:1,sp:2,parent:"1016086"}
         ];
 
         // Derive the working maps from the single source
