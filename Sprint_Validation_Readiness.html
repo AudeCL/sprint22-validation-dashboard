@@ -759,7 +759,7 @@
             </div>
         </div>
         <div class="data-refresh-notice">
-            <strong>ℹ️ Data Refresh:</strong> ADO data last extracted on <strong>October 25, 2026 at 5:59 PM CET</strong>.
+            <strong>ℹ️ Data Refresh:</strong> ADO data last extracted on <strong>October 25, 2026 at 7:59 PM CET</strong>.
             Validations completed in ADO after this time may not be reflected yet. Dashboard will be refreshed periodically.
         </div>
     </div>
@@ -923,9 +923,6 @@
         // validation flags (t/u/d/b = Technical/UX/Data/Business, 1 = completed in ADO),
         // story points & parent.
         const rawItems = [
-            {id:"1576856",title:"[eB2B][Tech] Storefront Performance – Analyze performance & Implement Improvements",assignee:"Mathieu",state:"In Build",tags:["eB2B","NoQA","Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:0,sp:2,parent:"1381364"},
-            {id:"1457567",title:"[OM][Enabler] Order Create / Order Update - Recover Failed Orders Following Empty Order Creation",assignee:"Aude",state:"In Build",tags:["BestEffort","Enabler","Hypercare","NoQA","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:5,parent:"970209"},
-            {id:"1459643",title:"[OM][Enabler] Define Ship-To-Based Clinical Alliance Assortment Strategy",assignee:"Aude",state:"In Build",tags:["eB2B","Enabler","NoQA","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:8,parent:"970147"},
             {id:"1454728",title:"[OM][Enabler] Define R6 Automated Returns Capabilities",assignee:"Eline",state:"Closed",tags:["eB2B","Enabler","NoQA","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:13,parent:"970206"},
             {id:"1083635",title:"[OM][Enabler] Promotions Display (Static Capture)",assignee:"Eline",state:"Closed",tags:["eB2B","Enabler","NoQA","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:13,parent:"1089831"},
             {id:"1272637",title:"[OM][Tech] Fetch Account Receivable Data (Customer Balance Details) 🚩",assignee:"",state:"Ready for Sprint testing",tags:["BestEffort","NoQA","Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:0,sp:5,parent:"970114"},
@@ -937,7 +934,6 @@
             {id:"1436999",title:"[OM] Order Traceability for Ship-To Initiated Orders",assignee:"",state:"Ready for Sprint testing",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:2,parent:"1403752"},
             {id:"1437239",title:"[OM] Order & Return Visibility Across Account Hierarchy (Sold-To / Ship-To / Bill-To / Payer)",assignee:"",state:"Ready for Sprint testing",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:3,parent:"970209"},
             {id:"1437317",title:"[OM] FEX permissions - Role-Based Access Control for Order Management (Servicing Actions)",assignee:"",state:"Ready for Sprint testing",tags:["Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:2,parent:"970211"},
-            {id:"1577272",title:"[eB2B][Tech] Code review - fixes",assignee:"",state:"Closed",tags:["eB2B","NoQA","Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:0,sp:2,parent:"1381358"},
             {id:"1471146",title:"[eB2B] Order Details Page",assignee:"",state:"Ready for Sprint testing",tags:["eB2B","SF_eB2B_Review Order Detail Page","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:13,parent:"1381489"},
             {id:"1482596",title:"[eB2B] Sales Channel & Origin Consolidation",assignee:"",state:"Ready for Sprint testing",tags:["eB2B","SF_eB2B_Review Order List"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:1,parent:"1381489"},
             {id:"1482600",title:"[eB2B] Standardized Status Naming",assignee:"",state:"Ready for Sprint testing",tags:["eB2B"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:1,sp:1,parent:"1381489"},
@@ -973,7 +969,8 @@
             {id:"1574039",title:"[eB2B][ChangeRequest][Tech] Automatically Create \"Order Contact Relationship Record\" at Order Create",assignee:"",state:"Closed",tags:["ChangeRequest","eB2B","NoValidation","Tech"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:3,parent:"1381474"},
             {id:"1574080",title:"[eB2B][Tech] Enrich Order Management Configuration with Region & Cluster",assignee:"",state:"Ready for Sprint testing",tags:["eB2B","NoQA","NoValidation","Order Mgmt"],ux_ui:0,data_rel:0,t:0,u:0,d:0,b:0,sp:2,parent:"970209"},
             {id:"1574107",title:"[OM][Change Request] Extend Akeneo-Salesforce Integration with Product Pillar Field",assignee:"",state:"Ready for Sprint testing",tags:["ChangeRequest","Data","Order Mgmt"],ux_ui:0,data_rel:1,t:1,u:0,d:1,b:1,sp:2,parent:"1016086"},
-            {id:"1576211",title:"[eB2B] Order Details Actions Responsive Dropdown (Mobile View)",assignee:"",state:"Ready for Sprint testing",tags:["eB2B","SF_eB2B_Review Order Detail Page","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:13,parent:"1381489"}
+            {id:"1576211",title:"[eB2B] Order Details Actions Responsive Dropdown (Mobile View)",assignee:"",state:"Ready for Sprint testing",tags:["eB2B","SF_eB2B_Review Order Detail Page","UX"],ux_ui:1,data_rel:0,t:1,u:1,d:0,b:1,sp:13,parent:"1381489"},
+            {id:"1577272",title:"[eB2B][Tech] Code review - fixes",assignee:"",state:"Closed",tags:["eB2B","NoQA","Order Mgmt"],ux_ui:0,data_rel:0,t:1,u:0,d:0,b:0,sp:2,parent:"1381358"}
         ];
 
         // Derive the working maps from the single source
